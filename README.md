@@ -2,7 +2,7 @@
 
 Progressive startup, with multitenancy in mind, made easy, for your asp.net core platform.
 
-- A flexible mapper to assign different types of requests a unique key, for example based on hostname or any other request value. 
+- A flexible mapper to partition different types of requests a unique key, for example based on hostname or any other request value. 
     - The mapping configuration is updateable whilst the application is running! It uses the `IOptions` system and so can be configured via `IConfiguration` providers such as JsonFile etc.
 - Enables a clean mechanism for you to add a progressive startup routine to your asp.net core platform.
     - When your platform starts up for the first time, you want a nice way for it to start in Platform Setup mode - so you can display your platform setup UI and only load the services needed to perform setup.
