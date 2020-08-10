@@ -27,7 +27,7 @@ namespace MultiStartup.Identify.Tests
                 });
             });
 
-            AddIdentifyRequest(services, Selectors.Instance.HostNoPort(), Matchers.Instance.Literal());
+            AddIdentifyRequest(services, Selectors.Instance.HostHeaderNoPort(), Matchers.Instance.Literal());
 
             var sp = services.BuildServiceProvider();
 
@@ -48,7 +48,7 @@ namespace MultiStartup.Identify.Tests
             });
 
 
-            AddIdentifyRequest(services, Selectors.Instance.HostNoPort(), Matchers.Instance.Glob());
+            AddIdentifyRequest(services, Selectors.Instance.HostHeaderNoPort(), Matchers.Instance.Glob());
 
             var sp = services.BuildServiceProvider();
 

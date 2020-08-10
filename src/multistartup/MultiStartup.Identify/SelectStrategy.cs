@@ -5,12 +5,18 @@ namespace MultiStartup.Identify
     public static class SelectValueStrategy
     {
 #pragma warning disable IDE0060 // Param needed for sugar extension method
-        public static SelectValue HostNoPort(this Selectors options) => new SelectValue(GetHostNoPort);
+        public static SelectValue HostHeaderNoPort(this Selectors options) => new SelectValue(GetHostHeaderNoPort);
+        public static SelectValue HostHeader(this Selectors options) => new SelectValue(GetHostHeader);
+
 #pragma warning restore IDE0060 // Remove unused parameter
 
-        private static string GetHostNoPort(HttpContext httpContext) =>
+        private static string GetHostHeaderNoPort(HttpContext httpContext) =>
             // authorityUriBuilder.Host           
-            httpContext?.Request?.GetUri()?.Host;
+            httpContext?.Request?.Host.Host;
+
+        private static string GetHostHeader(HttpContext httpContext) =>
+           // authorityUriBuilder.Host           
+           httpContext?.Request?.Host.Value;
     }
 
 }

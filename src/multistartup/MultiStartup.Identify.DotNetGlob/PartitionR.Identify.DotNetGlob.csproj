@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MultiStartup.Identify\MultiStartup.Identify.csproj" />
+    <ProjectReference Include="..\MultiStartup.Identify\PartitionR.Identify.csproj" />
   </ItemGroup>
 
 

@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiStartup", "MultiStartup\MultiStartup.csproj", "{28AD6428-7DB8-45AE-A6D4-D4E0834E66C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParitionR.Initialise", "MultiStartup\ParitionR.Initialise.csproj", "{28AD6428-7DB8-45AE-A6D4-D4E0834E66C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiStartup.Tests", "MultiStartup.Tests\MultiStartup.Tests.csproj", "{A05321DD-AF1D-4D97-8868-3971E6BC5475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartitionR.Tests", "MultiStartup.Tests\PartitionR.Tests.csproj", "{A05321DD-AF1D-4D97-8868-3971E6BC5475}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiStartup.Identify", "MultiStartup.Identify\MultiStartup.Identify.csproj", "{DAF157EB-C04A-487D-93E4-6B38C43A69ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartitionR.Identify", "MultiStartup.Identify\PartitionR.Identify.csproj", "{DAF157EB-C04A-487D-93E4-6B38C43A69ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiStartup.Identify.Tests", "MultiStartup.Identify.Tests\MultiStartup.Identify.Tests.csproj", "{0E7E849A-ED55-4072-8CD2-23F83678FE77}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiStartup.Identify.DotNetGlob", "MultiStartup.Identify.DotNetGlob\MultiStartup.Identify.DotNetGlob.csproj", "{668FE081-1BF2-4699-9D56-C2330A89E711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PartitionR.Identify.DotNetGlob", "MultiStartup.Identify.DotNetGlob\PartitionR.Identify.DotNetGlob.csproj", "{668FE081-1BF2-4699-9D56-C2330A89E711}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FC6C578C-1F2D-41E9-BBD1-F63B38E7FDDC}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,10 +38,6 @@ Global
 		{DAF157EB-C04A-487D-93E4-6B38C43A69ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF157EB-C04A-487D-93E4-6B38C43A69ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF157EB-C04A-487D-93E4-6B38C43A69ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E7E849A-ED55-4072-8CD2-23F83678FE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E7E849A-ED55-4072-8CD2-23F83678FE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E7E849A-ED55-4072-8CD2-23F83678FE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E7E849A-ED55-4072-8CD2-23F83678FE77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{668FE081-1BF2-4699-9D56-C2330A89E711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{668FE081-1BF2-4699-9D56-C2330A89E711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{668FE081-1BF2-4699-9D56-C2330A89E711}.Release|Any CPU.ActiveCfg = Release|Any CPU
