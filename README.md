@@ -94,8 +94,7 @@ For a non web application, this could just be a particular class that is resolve
 
 This is
 
-  The mappings can 
-    -   class assign different types of requests a unique key, for example based on hostname or any other request value. 
+- A flexible mapper to partition different types of requests into logical groups, each group is identified by an assigned key, for example in a multitenant application, you can map requests for your different tenants, to their own tenant ID key's.
     - The mapping configuration is updateable whilst the application is running! It uses the `IOptions` system and so can be configured via `IConfiguration` providers such as JsonFile etc.
 - Enables a clean mechanism for you to add a progressive startup routine to your asp.net core platform.
     - When your platform starts up for the first time, you want a nice way for it to start in Platform Setup mode - so you can display your platform setup UI and only load the services needed to perform setup.
@@ -106,9 +105,16 @@ ASP.NET Core gives you a single `startup` class, and this is a lot of logic to p
 
 This library solves that problem.
 
-1. It provides a middleware to assign an incoming request a Key based on a configurable mapping of the current request, that you can update at runtime (i.e to map in new tenants etc). This can be used to ensure each tenant, even if they have multiple URL's, is mapped at the start of the request to the specific Key that identifies them. This Key is just added to HttpContext.Items for use later. If you don't want to use the inbuilt mapper, just replace it with whatever your own logic is to identify the current tenant, as long as you set the Key (in HttpContext.Items) at the start of the request, then everything else downstream that this library provides will continue to work.
-2. It allows you to map `startup` classes to keys. The first time a request is received for a particular key, the startup class will be resolved and executed.
-3. It allows you to map multiple `startup` classes to the same key, but condition which one is currently enabled, for example, based on whether Tenant Setup has been completed.
+1. It provides a middleware to categorise an incoming request, and assign it a Key. The mapping is configurable and you can update it whilst the application is running, for exmaple to add in new tenants without a restart. The mapping maps the request to a Key, the Key is just stored in HttpContext.Items for use later. If you don't want to use the inbuilt mapper, just replace it with whatever your own logic is to identify the current request with key value indicating the tenant / category. As long as you set the Key (in HttpContext.Items) at the start of the request, then everything else downstream that this library provides will continue to work.
+2. It allows you to map different `startup` classes to different keys. The first time a request is received for a particular key, the startup class will be resolved, and executed.
+3. It allows you to map multiple different `startup` classes to the same key, but condition which one is currently "enabled", for example, based on whether Tenant Setup has been completed.
+
+The basic idea is that the first time you browse to tenant idenfied with key 1, this library will look at the different startup classes you have mapped to that key, and take the one that is enabled with the highest precedence, and use that to initialise the services, and middleware pipeline for the current partition identified by that key. In future requests mapped to the same key, the services, and middleware pipeline will be restored and the request will flow through it, essentially partitioning your asp.net core application by the key specified. So the startup class is only executed once to initialise that partition, or again when the partition with the same key is restarted,
+
+It provides a soft restart mechanism (in memory) so that the partition can be reloaded without stopping the application. 
+It lets you configure the startup classes used to initialisse the partition with the key 1. You can map multiple startups, in order of precedence, and each with an optional runtime condition (predicate or class if you need dependencies injected) that will be evaluated to work out it the startup class is "enabled". If its not enabled, it proceeds to check the next one until it finds one or no-ops. You can therefore create a condition on the TenantSetupStartup class to only be enabled when no tenant-settings.json exists (or whatever logic you want). This startup class can just register your services and endpoints toserver your setup experience. Once your tenant setup page is complete, you can save this settings file and restart the partition (not the applicaiton, just an operation in memory). The next time you browse to the smae tenant, this library will need to initialise that partition again, this time the enabled condition for TenantSetupStartup will fail as the tenant-settings.josn file does exist, and therefore it will try the next Startup class assigned to the key 1, in this case that would be your normal "TenantStartup" - this startup class can load your configured application and endpoints.
+
+This basically lets you partition your application into multliple modes of operation in a clean way. It's more general concept than just multitenance, although it was designed with that need in mind. You could also just use it for a non multitenant application, that requires the ability to serve a setup experience first.
 
 // TODO: Finish this doc.
 
